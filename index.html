@@ -9,14 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rellax/1.12.1/rellax.min.js"></script>
-    
     <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet">
     <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
     
@@ -50,7 +46,7 @@
             font-weight: 700;
         }
         
-        /* Button Styling */
+        /* Button Styles */
         .btn {
             display: inline-block;
             background-color: var(--secondary);
@@ -60,6 +56,8 @@
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
+            font-size: 1rem;
+            touch-action: manipulation; /* Improve touch responsiveness */
         }
         
         .btn:hover {
@@ -67,7 +65,7 @@
             transform: translateY(-2px);
         }
         
-        /* Efeito de Partículas */
+        /* Particle Effect */
         #particles-js {
             position: absolute;
             width: 100%;
@@ -87,7 +85,7 @@
             overflow: hidden;
             color: white;
             text-align: center;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
         
         .hero-bg {
@@ -116,29 +114,30 @@
             z-index: 2;
             max-width: 800px;
             margin: 0 auto;
+            padding: 0 1rem;
         }
         
         .hero-title {
-            font-size: 3.5rem;
+            font-size: clamp(2rem, 8vw, 3.5rem);
             margin-bottom: 1.5rem;
             opacity: 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
         
         .hero-subtitle {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 4vw, 1.5rem);
             margin-bottom: 2rem;
             opacity: 0;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
-        /* Navegação */
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 1.5rem 0;
+            padding: 1rem 0;
             z-index: 1000;
             transition: all 0.3s ease;
             background-color: rgba(44, 62, 80, 0.8);
@@ -147,7 +146,7 @@
         nav.scrolled {
             background-color: rgba(44, 62, 80, 0.95);
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 1rem 0;
+            padding: 0.75rem 0;
         }
         
         .nav-container {
@@ -156,11 +155,11 @@
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
         
         .logo {
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
             font-weight: 700;
             color: white;
             text-decoration: none;
@@ -169,7 +168,7 @@
         }
         
         .logo img {
-            height: 40px;
+            height: clamp(30px, 5vw, 40px);
             margin-right: 10px;
         }
         
@@ -179,7 +178,7 @@
         }
         
         .nav-links li {
-            margin-left: 2rem;
+            margin-left: 1.5rem;
         }
         
         .nav-links a {
@@ -187,15 +186,89 @@
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
         }
         
         .nav-links a:hover {
             color: var(--secondary);
         }
         
-        /* Seções */
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+        
+        .menu-toggle:focus {
+            outline: 2px solid var(--secondary);
+            outline-offset: 2px;
+        }
+        
+        /* Responsive Navigation */
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                transform: translateX(0);
+            }
+            
+            .nav-links li {
+                margin: 1.5rem 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+            
+            .nav-container {
+                position: relative;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .nav-container {
+                padding: 0 0.5rem;
+            }
+            
+            .logo {
+                font-size: 1rem;
+            }
+            
+            .logo img {
+                height: 25px;
+            }
+            
+            .nav-links a {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Sections */
         .section {
-            padding: 6rem 2rem;
+            padding: clamp(3rem, 8vw, 6rem) 1rem;
             position: relative;
         }
         
@@ -206,16 +279,16 @@
         
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 2rem;
             color: inherit;
         }
         
         .section-subtitle {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: clamp(0.9rem, 3vw, 1.2rem);
             max-width: 800px;
-            margin: 0 auto 3rem;
+            margin: 0 auto 2rem;
             color: inherit;
             opacity: 0.9;
         }
@@ -225,11 +298,11 @@
             margin: 0 auto;
         }
         
-        /* Sobre a Aha! */
+        /* About Aha! */
         .about-aha {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 2rem;
             align-items: center;
         }
         
@@ -252,11 +325,11 @@
             opacity: 0;
         }
         
-        .methodologies {
+        .metodologias {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
         }
         
         .methodology-tag {
@@ -264,44 +337,44 @@
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
         }
         
         /* Metodologias */
-        .methodology-section {
+        .metodologia-section {
             background-color: white;
-            padding: 4rem 2rem;
+            padding: clamp(2rem, 6vw, 4rem) 1rem;
         }
         
-        .methodology-grid {
+        .metodologia-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
         
-        .methodology-card {
+        .metodologia-card {
             background-color: var(--light);
             border-radius: 8px;
-            padding: 2rem;
+            padding: 1.5rem;
             transition: transform 0.3s ease;
             color: var(--primary);
         }
         
-        .methodology-card:hover {
+        .metodologia-card:hover {
             transform: translateY(-10px);
         }
         
-        .methodology-icon {
-            font-size: 2.5rem;
+        .metodologia-icon {
+            font-size: 2rem;
             color: var(--secondary);
             margin-bottom: 1rem;
         }
         
-        /* Projetos */
-        .projects-grid {
+        /* Projects */
+        .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
         }
         
         .project-card {
@@ -321,12 +394,12 @@
         
         .project-image {
             width: 100%;
-            height: 250px;
+            height: 200px;
             object-fit: cover;
         }
         
         .project-info {
-            padding: 1.5rem;
+            padding: 1rem;
         }
         
         .project-tags {
@@ -341,36 +414,36 @@
             color: var(--primary);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
         }
         
-        /* Depoimentos */
+        /* Testimonials */
         .testimonials-container {
             display: flex;
             overflow-x: auto;
-            gap: 2rem;
-            padding: 2rem 0;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
             scroll-snap-type: x mandatory;
         }
         
         .testimonial-card {
-            min-width: 350px;
+            min-width: clamp(250px, 80vw, 300px);
             background-color: white;
             border-radius: 8px;
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             scroll-snap-align: start;
             color: var(--primary);
         }
         
         .client-logo {
-            height: 50px;
+            height: 40px;
             margin-bottom: 1rem;
         }
         
         .client-quote {
             font-style: italic;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .client-info {
@@ -379,45 +452,46 @@
         }
         
         .client-avatar {
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             object-fit: cover;
-            margin-right: 1rem;
+            margin-right: 0.75rem;
         }
-        /* Contato */
+        
+        /* Contact */
         .contact-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 2rem;
         }
         
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
         }
         
         .contact-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.75rem;
         }
         
         .contact-icon {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             color: var(--secondary);
         }
         
         .contact-form {
             background-color: white;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .form-group label {
@@ -437,14 +511,14 @@
         }
         
         .form-group textarea {
-            min-height: 150px;
+            min-height: 120px;
         }
         
         .submit-btn {
             background-color: var(--primary);
             color: white;
             border: none;
-            padding: 0.75rem 2rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 4px;
             cursor: pointer;
             font-size: 1rem;
@@ -461,16 +535,16 @@
         footer {
             background-color: var(--dark);
             color: white;
-            padding: 3rem 0;
+            padding: 2rem 0;
         }
         
         .footer-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 1rem;
         }
         
         .footer-logo {
@@ -480,22 +554,22 @@
         }
         
         .footer-logo img {
-            height: 40px;
+            height: 35px;
             margin-right: 10px;
         }
         
         .footer-about {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         
         .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
         }
         
         .social-links a {
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: color 0.3s ease;
         }
         
@@ -504,8 +578,8 @@
         }
         
         .footer-links h4 {
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
         
         .footer-links ul {
@@ -528,8 +602,8 @@
         
         .copyright {
             text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
             border-top: 1px solid rgba(255,255,255,0.1);
         }
         
@@ -538,7 +612,7 @@
             width: 100%;
             border-radius: 8px;
             overflow: hidden;
-            margin: 2rem auto;
+            margin: 1.5rem auto;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         
@@ -547,61 +621,140 @@
             height: auto;
         }
         
-        /* Responsividade */
+        /* Enhanced Responsive Styles */
+        @media (max-width: 1200px) {
+            .section-content {
+                max-width: 90%;
+            }
+            
+            .hero-content {
+                max-width: 90%;
+            }
+        }
+        
         @media (max-width: 992px) {
             .about-aha,
             .contact-container {
                 grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .about-image,
+            .about-text {
+                transform: none;
+                opacity: 1;
             }
             
             .hero-title {
-                font-size: 2.5rem;
+                font-size: clamp(1.8rem, 6vw, 2.5rem);
             }
             
             .hero-subtitle {
-                font-size: 1.2rem;
+                font-size: clamp(0.9rem, 3.5vw, 1.2rem);
+            }
+            
+            .metodologia-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-image {
+                height: 180px;
             }
         }
         
         @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-            }
-            
-            .nav-links {
-                margin-top: 1rem;
-            }
-            
-            .nav-links li {
-                margin: 0 1rem;
-            }
-            
             .section {
-                padding: 4rem 1rem;
+                padding: clamp(2rem, 6vw, 4rem) 0.5rem;
+            }
+            
+            .hero-section {
+                padding: 0 0.5rem;
+            }
+            
+            .hero-video {
+                display: none; /* Hide video on smaller screens for performance */
+            }
+            
+            #particles-js {
+                opacity: 0.5; /* Reduce particle opacity for mobile */
+            }
+            
+            .metodologia-card,
+            .project-card,
+            .testimonial-card {
+                padding: 1rem;
+            }
+            
+            .contact-form {
+                padding: 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-logo {
+                justify-content: center;
+            }
+            
+            .social-links {
+                justify-content: center;
             }
         }
         
         @media (max-width: 576px) {
             .hero-title {
-                font-size: 2rem;
+                font-size: clamp(1.5rem, 5vw, 2rem);
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: clamp(1.5rem, 4.5vw, 2rem);
+            }
+            
+            .section-subtitle {
+                font-size: clamp(0.8rem, 3vw, 1rem);
+            }
+            
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .project-image {
+                height: 150px;
             }
             
             .testimonial-card {
-                min-width: 280px;
+                min-width: 90vw;
+            }
+            
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                padding: 0.5rem;
+            }
+            
+            .submit-btn {
+                width: 100%;
+                padding: 0.75rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav id="navbar" role="navigation" aria-label="Main navigation">
+    <nav id="navbar" role="navigation" aria-label="Navegação principal">
         <div class="nav-container">
             <a href="#" class="logo" aria-label="Aha! Desenvolvimento de Potenciais Home">
                 <img src="https://via.placeholder.com/150x50?text=Aha!+Logo" alt="Aha! Desenvolvimento de Potenciais">
             </a>
+            <button class="menu-toggle" aria-label="Alternar menu de navegação" aria-expanded="false">
+                <i class="fas fa-bars"></i>
+            </button>
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#fundadora">Fundadora</a></li>
@@ -614,10 +767,10 @@
     </nav>
     
     <section class="hero-section" id="inicio" role="banner">
-    <div class="hero-bg parallax-item" id="parallax-bg"></div>
-    <video autoplay muted loop class="hero-video parallax-item" aria-hidden="true">
-        <source src="https://storage.googleapis.com/hatch-assets/99446401-d820-449e-8367-a5170d19e07f" type="video/mp4">
-    </video>
+        <div class="hero-bg parallax-item" id="parallax-bg"></div>
+        <video autoplay muted loop class="hero-video parallax-item" aria-hidden="true">
+            <source src="https://storage.googleapis.com/hatch-assets/99446401-d820-449e-8367-a5170d19e07f" type="video/mp4">
+        </video>
         <div id="particles-js"></div>
         <div class="hero-content">
             <h1 class="hero-title">Transformação Organizacional com Propósito</h1>
@@ -641,7 +794,7 @@
                     <p>Facilitamos experiências que aterrizam a comunicação, expandem laços e constroem confiança em equipes, com resultados reconhecidos por empresas de grande porte.</p>
                     
                     <h3>Nossas Metodologias</h3>
-                    <div class="methodologies">
+                    <div class="metodologias">
                         <span class="methodology-tag">Teoria U</span>
                         <span class="methodology-tag">Antroposofia</span>
                         <span class="methodology-tag">Comunicação Não Violenta</span>
@@ -657,7 +810,7 @@
                     width="100%" 
                     height="100%" 
                     src="https://www.youtube.com/embed/MMKuNIV5fEw?si=IqONj69m2UDFlCbe" 
-                    title="YouTube video player" 
+                    title="Reprodutor de vídeo do YouTube" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -669,108 +822,108 @@
     </section>
 
     <section class="section" id="fundadora">
-    <div class="section-content">
-        <h2 class="section-title">Anita Prado Ferraro</h2>
-        <p class="section-subtitle">Sócia-diretora e Facilitadora de Transformação Organizacional</p>
-        
-        <div class="about-aha">
-            <div class="about-text">
-                <h3>Resumo Profissional</h3>
-                <p>Anita Prado Ferraro é sócia-diretora da Aha! Desenvolvimento de Potenciais, com formação internacional em Teoria U pelo Presencing Institute em Berlim. Especialista em jornadas imersivas para desenvolvimento humano e organizacional, combina abordagens contemporâneas com resultados práticos.</p>
-                
-                <h3>Principais Competências</h3>
-                <ul style="margin-bottom: 1.5rem; list-style-position: inside;">
-                    <li>Facilitação de processos de transformação organizacional</li>
-                    <li>Implementação da Teoria U em contextos corporativos</li>
-                    <li>Desenvolvimento de lideranças conscientes</li>
-                    <li>Design de jornadas de aprendizagem experiencial</li>
-                    <li>Mediação de conflitos e construção de confiança em equipes</li>
-                </ul>
-                
-                <div class="methodologies">
-                    <span class="methodology-tag">Teoria U</span>
-                    <span class="methodology-tag">Facilitação de Grupos</span>
-                    <span class="methodology-tag">Liderança Consciente</span>
-                    <span class="methodology-tag">Desenvolvimento Organizacional</span>
+        <div class="section-content">
+            <h2 class="section-title">Anita Prado Ferraro</h2>
+            <p class="section-subtitle">Sócia-diretora e Facilitadora de Transformação Organizacional</p>
+            
+            <div class="about-aha">
+                <div class="about-text">
+                    <h3>Resumo Profissional</h3>
+                    <p>Anita Prado Ferraro é sócia-diretora da Aha! Desenvolvimento de Potenciais, com formação internacional em Teoria U pelo Presencing Institute em Berlim. Especialista em jornadas imersivas para desenvolvimento humano e organizacional, combina abordagens contemporâneas com resultados práticos.</p>
+                    
+                    <h3>Principais Competências</h3>
+                    <ul style="margin-bottom: 1.5rem; list-style-position: inside;">
+                        <li>Facilitação de processos de transformação organizacional</li>
+                        <li>Implementação da Teoria U em contextos corporativos</li>
+                        <li>Desenvolvimento de lideranças conscientes</li>
+                        <li>Design de jornadas de aprendizagem experiencial</li>
+                        <li>Mediação de conflitos e construção de confiança em equipes</li>
+                    </ul>
+                    
+                    <div class="metodologias">
+                        <span class="methodology-tag">Teoria U</span>
+                        <span class="methodology-tag">Facilitação de Grupos</span>
+                        <span class="methodology-tag">Liderança Consciente</span>
+                        <span class="methodology-tag">Desenvolvimento Organizacional</span>
+                    </div>
+                    
+                    <a href="https://www.linkedin.com/in/anita-prado-ferraro" target="_blank" class="btn" style="margin-top: 1.5rem;">
+                        <i class="fab fa-linkedin"></i> Ver Perfil Completo no LinkedIn
+                    </a>
                 </div>
                 
-                <a href="https://www.linkedin.com/in/anita-prado-ferraro" target="_blank" class="btn" style="margin-top: 1.5rem;">
-                    <i class="fab fa-linkedin"></i> Ver Perfil Completo no LinkedIn
-                </a>
+                <div class="about-image">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQE_VDhDUtFPXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705870672366?e=1755734400&v=beta&t=etAofpZRfcU9JWot3_-KaQhLQmyEN8QDm11e23jRm9s" alt="Anita Prado Ferraro">
+                </div>
             </div>
             
-            <div class="about-image">
-                <img src="https://media.licdn.com/dms/image/v2/D4D03AQE_VDhDUtFPXw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1705870672366?e=1755734400&v=beta&t=etAofpZRfcU9JWot3_-KaQhLQmyEN8QDm11e23jRm9s" alt="Anita Prado Ferraro">
-            </div>
-        </div>
-        
-        <div style="margin-top: 4rem;">
-            <h3 style="text-align: center; margin-bottom: 2rem;">Destaques da Trajetória</h3>
-            
-            <div class="methodology-grid">
-                <div class="methodology-card">
-                    <div class="methodology-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>Formação Internacional</h3>
-                    <p>Certificação em Teoria U pelo Presencing Institute, com formação realizada em Berlim, referência global em inovação e liderança sistêmica.</p>
-                </div>
+            <div style="margin-top: 4rem;">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Destaques da Trajetória</h3>
                 
-                <div class="methodology-card">
-                    <div class="methodology-icon">
-                        <i class="fas fa-chalkboard-teacher"></i>
+                <div class="metodologia-grid">
+                    <div class="metodologia-card">
+                        <div class="metodologia-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Formação Internacional</h3>
+                        <p>Certificação em Teoria U pelo Presencing Institute, com formação realizada em Berlim, referência global em inovação e liderança sistêmica.</p>
                     </div>
-                    <h3>Facilitação de Grupos</h3>
-                    <p>Experiência reconhecida na condução de processos grupais e desenvolvimento de equipes em organizações de diversos portes e segmentos.</p>
-                </div>
-                
-                <div class="methodology-card">
-                    <div class="methodology-icon">
-                        <i class="fas fa-microphone"></i>
+                    
+                    <div class="metodologia-card">
+                        <div class="metodologia-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h3>Facilitação de Grupos</h3>
+                        <p>Experiência reconhecida na condução de processos grupais e desenvolvimento de equipes em organizações de diversos portes e segmentos.</p>
                     </div>
-                    <h3>Palestras e Podcasts</h3>
-                    <p>Convidada regular para eventos e mídias especializadas em desenvolvimento organizacional, consultoria e aceleração de equipes.</p>
+                    
+                    <div class="metodologia-card">
+                        <div class="metodologia-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h3>Palestras e Podcasts</h3>
+                        <p>Convidada regular para eventos e mídias especializadas em desenvolvimento organizacional, consultoria e aceleração de equipes.</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
     
     <section class="section section-dark" id="metodologias">
         <div class="section-content">
             <h2 class="section-title">Nossa Abordagem Metodológica</h2>
             <p class="section-subtitle">Integrando múltiplas abordagens contemporâneas para resultados transformadores</p>
             
-            <div class="methodology-grid">
-                <div class="methodology-card">
-                    <div class="methodology-icon">
+            <div class="metodologia-grid">
+                <div class="metodologia-card">
+                    <div class="metodologia-icon">
                         <i class="fas fa-users"></i>
                     </div>
                     <h3>Teoria U</h3>
                     <p>Metodologia de inovação e transformação organizacional criada pelo Presencing Institute, com formação internacional em Berlim, que promove mudanças profundas através da conexão com o futuro emergente.</p>
                 </div>
                 
-                <div class="methodology-card">
-                    <div class="methodology-icon">
+                <div class="metodologia-card">
+                    <div class="metodologia-icon">
                         <i class="fas fa-brain"></i>
                     </div>
                     <h3>Comunicação de Alto Desempenho</h3>
                     <p>Técnicas avançadas para melhorar a eficácia da comunicação interpessoal e organizacional, promovendo alinhamento e entendimento mútuo nas equipes.</p>
                 </div>
                 
-                <div class="methodology-card">
-                    <div class="methodology-icon">
+                <div class="metodologia-card">
+                    <div class="metodologia-icon">
                         <i class="fas fa-heart"></i>
                     </div>
                     <h3>Comunicação Não Violenta</h3>
                     <p>Abordagem que fortalece a capacidade de continuarmos humanos, mesmo em condições adversas, melhorando relacionamentos e resolvendo conflitos de forma empática.</p>
                 </div>
                 
-                <div class="methodology-card">
-                    <div class="methodology-icon">
+                <div class="metodologia-card">
+                    <div class="metodologia-icon">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>Inner Development Goals</h3>
+                    <h3>Objetivos de Desenvolvimento Interno</h3>
                     <p>Estrutura para desenvolvimento de habilidades e qualidades internas necessárias para lidar com os complexos atuais, alinhadas aos Objetivos de Desenvolvimento Sustentável.</p>
                 </div>
             </div>
@@ -782,7 +935,7 @@
             <h2 class="section-title">Nossos Projetos e Experiências</h2>
             <p class="section-subtitle">Programas personalizados para desenvolvimento de equipes e lideranças</p>
             
-            <div class="projects-grid">
+            <div class="project-grid">
                 <div class="project-card">
                     <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Jornadas Temáticas" class="project-image">
                     <div class="project-info">
@@ -838,7 +991,7 @@
                         <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Nina Forlin" class="client-avatar">
                         <div>
                             <h4>Nina Forlin</h4>
-                            <p>Account Manager - ESG</p>
+                            <p>Gerente de Contas - ESG</p>
                         </div>
                     </div>
                 </div>
@@ -859,10 +1012,10 @@
                     <img src="https://via.placeholder.com/150x50?text=Itaú" alt="Itaú" class="client-logo">
                     <p class="client-quote">"Transferiram o conhecimento de forma clara, leve, empática e prática. Todos os participantes elogiaram e saíram sabendo a aplicabilidade imediata em seus contextos de trabalho."</p>
                     <div class="client-info">
-                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Barbara Barbosa" class="client-avatar">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Bárbara Barbosa" class="client-avatar">
                         <div>
-                            <h4>Barbara Barbosa</h4>
-                            <p>IOX I Aprendizagem</p>
+                            <h4>Bárbara Barbosa</h4>
+                            <p>IOX | Aprendizagem</p>
                         </div>
                     </div>
                 </div>
@@ -899,7 +1052,7 @@
                     <div class="contact-item">
                         <i class="fas fa-envelope contact-icon" aria-hidden="true"></i>
                         <div>
-                            <h4>Email</h4>
+                            <h4>E-mail</h4>
                             <p>contato@ahadesenvolvimento.com</p>
                         </div>
                     </div>
@@ -1010,7 +1163,10 @@
             const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             const renderer = new THREE.WebGLRenderer({ alpha: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
-            document.getElementById('particles-js').appendChild(renderer.domElement);
+            const particlesJs = document.getElementById('particles-js');
+            if (particlesJs) {
+                particlesJs.appendChild(renderer.domElement);
+            }
             
             const particlesGeometry = new THREE.BufferGeometry();
             const particlesCnt = 100;
@@ -1047,7 +1203,7 @@
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
-
+            
             // GSAP Animations
             gsap.registerPlugin(ScrollTrigger);
             
@@ -1067,27 +1223,24 @@
                 ease: "power3.out"
             });
             
-            // Section Titles Animations with different effects
+            // Section Titles Animations with Different Effects
             gsap.utils.toArray('.section-title').forEach((title, i) => {
-                // Different effects based on section index
                 const effects = [
-                    { x: -100, rotation: -5 },  // Effect for first section
-                    { x: 100, rotation: 5 },    // Effect for second section
-                    { y: 50, scale: 0.9 },      // Effect for third section
-                    { x: -100, y: 50 },         // Effect for fourth section
-                    { y: 100, opacity: 0 },     // Effect for fifth section
-                    { x: 100, y: -50 }          // Effect for sixth section
+                    { x: -100, rotation: -5 },
+                    { x: 100, rotation: 5 },
+                    { y: 50, scale: 0.9 },
+                    { x: -100, y: 50 },
+                    { y: 100, opacity: 0 },
+                    { x: 100, y: -50 }
                 ];
                 
                 const effect = effects[i % effects.length];
                 
-                // Set initial state
                 gsap.set(title, {
                     opacity: 0,
                     ...effect
                 });
                 
-                // Animate to final state
                 gsap.to(title, {
                     opacity: 1,
                     x: 0,
@@ -1173,7 +1326,7 @@
             });
             
             // Methodology Cards Animations
-            gsap.utils.toArray('.methodology-card').forEach((card, i) => {
+            gsap.utils.toArray('.metodologia-card').forEach((card, i) => {
                 gsap.set(card, {
                     opacity: 0,
                     y: 50
@@ -1247,22 +1400,71 @@
                 }
             });
             
+            // Menu Toggle Functionality
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if (menuToggle && navLinks) {
+                menuToggle.addEventListener('click', () => {
+                    // Toggle menu state
+                    const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                    menuToggle.setAttribute('aria-expanded', !isExpanded);
+                    navLinks.classList.toggle('active');
+                    
+                    // Toggle icon between hamburger and X
+                    const icon = menuToggle.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                    
+                    // Lock/unlock scroll when menu is open
+                    document.body.style.overflow = isExpanded ? '' : 'hidden';
+                });
+                
+                // Close menu when clicking a link (mobile)
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navLinks.classList.contains('active')) {
+                            navLinks.classList.remove('active');
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                            const icon = menuToggle.querySelector('i');
+                            icon.classList.remove('fa-times');
+                            icon.classList.add('fa-bars');
+                            document.body.style.overflow = '';
+                        }
+                    });
+                });
+                
+                // Close menu when resizing to desktop
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth > 992 && navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        const icon = menuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
             // Form Submission Handling
             const form = document.getElementById('contact-form');
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                const name = document.getElementById('name').value.trim();
-                const email = document.getElementById('email').value.trim();
-                const message = document.getElementById('message').value.trim();
-                
-                if (name && email && message) {
-                    alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
-                    form.reset();
-                } else {
-                    alert('Por favor, preencha todos os campos obrigatórios.');
-                }
-            });
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    const name = document.getElementById('name').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const message = document.getElementById('message').value.trim();
+                    
+                    if (name && email && message) {
+                        alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                        form.reset();
+                    } else {
+                        alert('Por favor, preencha todos os campos obrigatórios.');
+                    }
+                });
+            }
         });
     </script>
 </body>
